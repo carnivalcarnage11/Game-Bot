@@ -2,17 +2,18 @@
 import os
 import numpy as np
 from keras.utils import to_categorical
-from scipy.misc import imread, imresize, imsave
+from PIL import Image
 from sklearn.model_selection import train_test_split
 
 def get_img(data_path):
     # Getting image array from path:
-    img = imread(data_path)
-    img = imresize(img, (150, 150, 3))
+    img = Image.open(data_path)
+    img = img.resize((150, 150), Image.BILINEAR)
+    img = np.array(img)
     return img
 
 def save_img(img, path):
-    imsave(path, img)
+    Image.fromarray((img * 255).astype('uint8')).save(path)
     return
 
 def get_dataset(dataset_path='Data/Train_Data'):
@@ -45,3 +46,12 @@ def get_dataset(dataset_path='Data/Train_Data'):
         np.save('Data/npy_train_data/Y.npy', Y)
     X, X_test, Y, Y_test = train_test_split(X, Y, test_size=0.1, random_state=42)
     return X, X_test, Y, Y_test
+
+if __name__ == '__main__':
+    # Test get_dataset and save_img
+    X, X_test, Y, Y_test = get_dataset()
+    print('Dataset shapes:', X.shape, X_test.shape, Y.shape, Y_test.shape)
+    # Save a sample image
+    if X.shape[0] > 0:
+        save_img(X[0], 'test_img.png')
+        print('Saved test_img.png')

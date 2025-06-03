@@ -36,3 +36,11 @@ def press(key):
 def release(key):
     keyboard.release(key)
     return
+
+if __name__ == '__main__':
+    # Test keyboard and mouse functions
+    print('Testing get_keys:', get_keys()[:5])
+    print('Testing get_id("a"):', get_id('a'))
+    print('Testing get_key(0):', get_key(0))
+    # Mouse and keyboard actions are not run for safety
+    print('game_control.py test complete.')

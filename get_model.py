@@ -51,4 +51,8 @@ def get_model():
     return model
 
 if __name__ == '__main__':
-    save_model(get_model())
+    # Test get_model and save_model
+    model = get_model()
+    print('Model created:', model)
+    save_model(model)
+    print('Model saved to Data/Model/')

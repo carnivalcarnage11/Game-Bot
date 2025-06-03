@@ -33,3 +33,17 @@ def add_data(table, adding):
     vt, db = set_connect_and_cursor()
     db.execute("INSERT INTO '{0}' VALUES ({1})".format(table, adding))
     close_connect(vt)
+
+if __name__ == '__main__':
+    # Test database functions
+    test_db = 'test_db.sqlite'
+    vt = set_sql_connect(test_db)
+    db = set_sql_cursor(vt)
+    db.execute('CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, value TEXT)')
+    db.execute("INSERT INTO test (value) VALUES ('hello')")
+    vt.commit()
+    db.execute('SELECT * FROM test')
+    print('Database rows:', db.fetchall())
+    vt.close()
+    os.remove(test_db)
+    print('database_process.py test complete.')

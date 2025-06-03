@@ -16,12 +16,11 @@ Game Bot is an artificial intelligence that learns to play any game by watching 
 ## Getting Started
 
 ### 1. Install Requirements
-Make sure you have Python 3.6.0 installed.
-
-Install the required Python packages:
-```
-pip install -r requirements.txt
-```
+- Make sure you have **Python 3.10** installed (recommended for compatibility with TensorFlow and Keras).
+- Install the required Python packages:
+  ```
+  pip install -r requirements.txt
+  ```
 
 ### 2. Create a Training Dataset
 1. Run the dataset creation script:
@@ -50,11 +49,13 @@ tensorboard --logdir=Data/Checkpoints/logs
 ```
 
 ## Notes
-- Tested with Python 3.6.0
+- Tested with Python 3.10.0 and 3.6.0
 - This project is still under development
+- If you encounter errors about missing data, make sure you have run `create_dataset.py` and played your game to generate training data before training or running the AI.
+- If you see errors about missing modules, ensure you are using Python 3.10 and have installed all requirements.
 
 ## Windows Installation
-1. Download and install Python 3.6.0: https://www.python.org/downloads/release/python-360/
+1. Download and install Python 3.10.0: https://www.python.org/downloads/release/python-3100/
 2. Open Command Prompt and run:
    ```
    pip install -r requirements.txt
