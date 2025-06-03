@@ -13,6 +13,11 @@ from multiprocessing import Process
 from keras.models import model_from_json
 from pynput.mouse import Listener as mouse_listener
 from pynput.keyboard import Listener as key_listener
+import time
+
+if platform.system() == 'Windows':
+    import ctypes
+    import win32gui
 
 def get_screenshot():
     img = ImageGrab.grab()
@@ -64,10 +69,31 @@ def listen_keyboard():
     with key_listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
 
+def wait_for_window(title_substring, poll_interval=1):
+    """
+    Wait until a window with the given substring in its title is the foreground window.
+    """
+    if platform.system() != 'Windows':
+        print('Window focus detection is only supported on Windows.')
+        return
+    print(f'Waiting for window with title containing: "{title_substring}" to be focused...')
+    while True:
+        hwnd = win32gui.GetForegroundWindow()
+        window_title = win32gui.GetWindowText(hwnd)
+        if title_substring.lower() in window_title.lower():
+            print(f'Window "{window_title}" is now focused. Starting recording!')
+            break
+        time.sleep(poll_interval)
+
 def main():
     dataset_path = 'Data/Train_Data/'
     if not os.path.exists(dataset_path):
         os.makedirs(dataset_path)
+
+    # Ask user for window title substring
+    if platform.system() == 'Windows':
+        title_substring = input('Enter part of the game window title to wait for: ')
+        wait_for_window(title_substring)
 
     # Start to listening mouse with new process:
     Process(target=listen_mouse, args=()).start()

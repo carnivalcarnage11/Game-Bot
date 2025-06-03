@@ -16,7 +16,7 @@ def save_model(model):
     return
 
 
-def get_model():
+def get_model(num_classes=4):
     inputs = Input(shape=(150, 150, 3))
 
     conv_1 = Conv2D(32, (3,3), strides=(1,1))(inputs)
@@ -40,7 +40,7 @@ def get_model():
     fc = Dense(1280)(flat_1)
     fc = Activation('relu')(fc)
     fc = Dropout(0.5)(fc)
-    fc = Dense(4)(fc)
+    fc = Dense(num_classes)(fc)
 
     outputs = Activation('sigmoid')(fc)
 
@@ -52,7 +52,7 @@ def get_model():
 
 if __name__ == '__main__':
     # Test get_model and save_model
-    model = get_model()
+    model = get_model(4)
     print('Model created:', model)
     save_model(model)
     print('Model saved to Data/Model/')
