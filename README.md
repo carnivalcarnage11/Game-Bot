@@ -1,44 +1,65 @@
 # Game Bot
 ### By Arda Mavi
 
-Artificial intelligence that learns to play any game by watching you.
+Game Bot is an artificial intelligence that learns to play any game by watching your actions. It records your keyboard and mouse movements while you play, then trains a deep learning model to mimic your gameplay.
 
-## How does this work?
-- First: Run program and play any game for a little bit.
-- Second: Run program and watch the artificial intelligence play the game.
+## Features
+- Records your keyboard and mouse actions while you play any game
+- Trains a neural network to learn your play style
+- Lets the AI play the game for you using the trained model
 
-## How does it work behind the scenes?
-When you run the training program, the program listens for your keyboard and mouse moving, then it saves those movements.<br>
-Artificial intelligence learn: When I push any button?<br/>
-And when you run the program, it plays the game just like you!
+## How It Works
+1. **Record Gameplay:** Run the dataset creation script and play your game. The program will record your actions and screenshots.
+2. **Train the Model:** Use the training script to teach the AI how you play.
+3. **Let the AI Play:** Run the AI script to watch the bot play the game using your style.
 
-## But how does it learn?
-##### Magic! (just joking)
-With deep learning.<br/>
-Deep Learning is a subfield of machine learning with neural networks inspired by the structure of the brains artificial neural networks.
+## Getting Started
 
-### Playing with Artificial Intelligence:
-1. Open your desired game (If you have already trained the artificial intelligence).
-2. Run `python3 ai.py` command in terminal.
+### 1. Install Requirements
+Make sure you have Python 3.6.0 installed.
 
-### Creating Training Dataset:
-1. Run `python3 create_dataset.py` command in terminal.
-2. Play your desired game.
-3. Stop `create_dataset` program with `Cntrl-C` in terminal.
+Install the required Python packages:
+```
+pip install -r requirements.txt
+```
 
-### Model Training:
-`python3 train.py`
+### 2. Create a Training Dataset
+1. Run the dataset creation script:
+   ```
+   python create_dataset.py
+   ```
+2. Play your game. The program will record your actions.
+3. Stop the script with `Ctrl+C` when done.
 
-### Using TensorBoard:
-`tensorboard --logdir=Data/Checkpoints/logs`
+### 3. Train the Model
+Train the AI using your recorded data:
+```
+python train.py
+```
 
-### Important Notes:
-- Tested in Python version 3.6.0
+### 4. Run the AI
+Let the AI play the game:
+```
+python ai.py
+```
 
-- Install necessary modules with `sudo pip3 install -r requirements.txt` command.
+### 5. (Optional) Use TensorBoard
+To monitor training progress:
+```
+tensorboard --logdir=Data/Checkpoints/logs
+```
 
-## WINDOWS Installation:
-- Install Python 3.6.0 : https://www.python.org/downloads/release/python-360/
-- Run CMD and Input Command `pip3 install -r requirements.txt`
+## Notes
+- Tested with Python 3.6.0
+- This project is still under development
 
-### This project is still being worked on ...
+## Windows Installation
+1. Download and install Python 3.6.0: https://www.python.org/downloads/release/python-360/
+2. Open Command Prompt and run:
+   ```
+   pip install -r requirements.txt
+   ```
+
+---
+
+Feel free to contribute or open issues. Enjoy teaching your AI to play games!
