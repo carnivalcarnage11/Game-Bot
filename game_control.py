@@ -10,7 +10,14 @@ def get_key(id):
     return get_keys()[id]
 
 def get_id(key):
-    return get_keys().index(key)
+    # Convert pynput Key objects to their string value
+    if hasattr(key, 'char') and key.char is not None:
+        key_str = key.char
+    elif hasattr(key, 'name'):
+        key_str = key.name
+    else:
+        key_str = str(key).replace('Key.', '')
+    return get_keys().index(key_str)
 
 keyboard = Keyboard()
 mouse = Mouse()

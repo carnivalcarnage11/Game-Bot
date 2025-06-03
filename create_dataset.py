@@ -22,15 +22,15 @@ def get_screenshot():
 
 def save_event_keyboard(data_path, event, key):
     key = get_id(key)
-    data_path = data_path + '/-1,-1,{0},{1}'.format(event, key)
+    data_path = data_path + '/-1,-1,{0},{1}.png'.format(event, key)
     screenshot = get_screenshot()
-    save_img(data_path, screenshot)
+    save_img(screenshot, data_path)
     return
 
 def save_event_mouse(data_path, x, y):
-    data_path = data_path + '/{0},{1},0,0'.format(x, y)
+    data_path = data_path + '/{0},{1},0,0.png'.format(x, y)
     screenshot = get_screenshot()
-    save_img(data_path, screenshot)
+    save_img(screenshot, data_path)
     return
 
 def listen_mouse():
