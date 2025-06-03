@@ -11,7 +11,7 @@ def save_model(model):
     with open("Data/Model/model.json", "w") as model_file:
         model_file.write(model_json)
     # serialize weights to HDF5
-    model.save_weights("Data/Model/weights.h5")
+    model.save_weights("Data/Model/weights.weights.h5")
     print('Model and weights saved')
     return
 
